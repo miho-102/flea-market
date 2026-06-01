@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {return '商品一覧ページ予定';});
+
+Route::get('/home', function () {return redirect('/');});
+
+
+Route::get('/logout-test', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login');
 });
+
+Route::get('/mypage/profile', [ProfileController::class, 'edit'])
+    ->middleware('auth');
+
+Route::post('/mypage/profile', [ProfileController::class, 'update'])
+    ->middleware('auth');
