@@ -20,7 +20,7 @@ class ItemsTableSeeder extends Seeder
 
     public function run()
     {
-        Item::create([
+        $item = Item::create([
             'user_id' => 1,
             'name' => '腕時計',
             'brand_name' => 'Rolax',
@@ -30,6 +30,8 @@ class ItemsTableSeeder extends Seeder
             'condition' => 1,
             'is_sold' => true,
         ]);
+
+        $item->categories()->attach([1, 5]);
 
         Item::create([
             'user_id' => 1,

@@ -36,6 +36,12 @@
     @endif
 </p>
 
+<p>カテゴリ：</p>
+
+@foreach ($item->categories as $category)
+    <p>{{ $category->name }}</p>
+@endforeach
+
 <p>
     商品説明：
     {{ $item->description }}
