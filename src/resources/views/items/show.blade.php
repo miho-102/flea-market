@@ -47,6 +47,27 @@
     {{ $item->description }}
 </p>
 
+<h2>コメント</h2>
+
+@foreach ($item->comments as $comment)
+    <div>
+        <p>{{ $comment->user->name }}</p>
+        <p>{{ $comment->comment }}</p>
+    </div>
+@endforeach
+
+<form action="/item/{{ $item->id }}/comments" method="POST">
+    @csrf
+
+    <textarea name="comment"></textarea>
+    @error('comment')
+    <p>{{ $message }}</p>
+    @enderror
+
+    <button type="submit">
+        コメントを送信する
+    </button>
+
 <a href="/">
     商品一覧へ戻る
 </a>
