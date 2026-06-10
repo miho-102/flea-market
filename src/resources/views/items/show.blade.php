@@ -47,6 +47,16 @@
     {{ $item->description }}
 </p>
 
+<form action="/item/{{ $item->id }}/like" method="POST">
+    @csrf
+
+    <button type="submit" style="font-size: 30px;">
+        ♡
+    </button>
+</form>
+
+<p>いいね数：{{ $item->likes->count() }}</p>
+
 <h2>コメント</h2>
 
 @foreach ($item->comments as $comment)

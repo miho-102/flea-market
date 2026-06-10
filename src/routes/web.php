@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,7 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 Route::post('/item/{item_id}/comments',[CommentController::class, 'store'])
+    ->middleware('auth');
+
+Route::post('/item/{item_id}/like',[LikeController::class, 'store'])
     ->middleware('auth');
