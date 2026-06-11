@@ -6,6 +6,9 @@
 </head>
 <body>
 
+<a href="/">おすすめ</a>
+<a href="/?page=mylist">マイリスト</a>
+
 <h1>商品一覧</h1>
 
 @foreach ($items as $item)
@@ -23,6 +26,7 @@
         <p>{{ $item->price }}円</p>
     </div>
 @endforeach
+
 
 </body>
 </html>

@@ -10,10 +10,18 @@ class LikeController extends Controller
 {
     public function store($item_id)
     {
-        Like::firstOrcreate([
+    $like = Like::where('user_id', Auth::id())
+        ->where('item_id', $item_id)
+        ->first();
+
+    if ($like) {
+        $like->delete();
+    } else {
+        Like::create([
             'user_id' => Auth::id(),
             'item_id' => $item_id,
         ]);
+    }
 
         return redirect('/item/' . $item_id);
     }
