@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,7 @@ Route::post('/item/{item_id}/comments',[CommentController::class, 'store'])
     ->middleware('auth');
 
 Route::post('/item/{item_id}/like',[LikeController::class, 'store'])
+    ->middleware('auth');
+
+Route::get('/mypage', [MypageController::class, 'index'])
     ->middleware('auth');

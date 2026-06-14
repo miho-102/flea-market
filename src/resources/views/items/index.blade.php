@@ -6,8 +6,13 @@
 </head>
 <body>
 
-<a href="/">おすすめ</a>
-<a href="/?page=mylist">マイリスト</a>
+<form action="/" method="GET">
+    <input type="text" name="keyword" value="{{ request('keyword') }}">
+    <button type="submit">検索</button>
+</form>
+
+<a href="/?keyword={{ request('keyword') }}">おすすめ</a>
+<a href="/?page=mylist&keyword={{ request('keyword') }}">マイリスト</a>
 
 <h1>商品一覧</h1>
 
