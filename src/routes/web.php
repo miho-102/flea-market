@@ -48,3 +48,9 @@ Route::post('/item/{item_id}/like',[LikeController::class, 'store'])
 
 Route::get('/mypage', [MypageController::class, 'index'])
     ->middleware('auth');
+
+Route::get('/sell', [ItemController::class, 'create'])
+    ->middleware('auth');
+
+Route::post('/sell', [ItemController::class, 'store'])
+    ->middleware('auth');
