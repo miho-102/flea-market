@@ -47,6 +47,10 @@
     {{ $item->description }}
 </p>
 
+<a href="/purchase/{{ $item->id }}">
+    購入する
+</a>
+
 <form action="/item/{{ $item->id }}/like" method="POST">
     @csrf
 

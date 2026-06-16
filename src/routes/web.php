@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,10 @@ Route::get('/sell', [ItemController::class, 'create'])
     ->middleware('auth');
 
 Route::post('/sell', [ItemController::class, 'store'])
+    ->middleware('auth');
+
+Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])
+    ->middleware('auth');
+
+Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])
     ->middleware('auth');
