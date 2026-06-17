@@ -9,24 +9,31 @@ use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
-        public function create($item_id)
+    public function create($item_id)
     {
         $item = Item::findOrFail($item_id);
 
-        return view('purchase.create', compact('item'));
+        $profile = Auth::user()->profile;
+
+        if (!$profile) {
+        return redirect('/mypage/profile');
+        }
+
+        return view('purchase.create', compact('item', 'profile'));
     }
-
-        public function store($item_id)
+    public function store(Request $request,$item_id)
     {
         $item = Item::findOrFail($item_id);
+
+        $profile = Auth::user()->profile;
 
         Purchase::create([
             'user_id' => Auth::id(),
             'item_id' => $item->id,
-            'payment_method' => 'コンビニ払い',
-            'postal_code' => '000-0000',
-            'address' => 'テスト住所',
-            'building' => null,
+            'payment_method' => $request->payment_method,
+            'postal_code' => $profile->postal_code,
+            'address' => $profile->address,
+            'building' => $profile->building,
         ]);
 
         $item->update([
@@ -34,5 +41,25 @@ class PurchaseController extends Controller
         ]);
 
         return redirect('/');
+    }
+
+    public function editAddress($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $profile = Auth::user()->profile;
+
+        return view('purchase.address', compact('item', 'profile'));
+    }
+
+    public function updateAddress(Request $request, $item_id)
+    {
+        $profile = Auth::user()->profile;
+        $profile->update([
+        'postal_code' => $request->postal_code,
+        'address' => $request->address,
+        'building' => $request->building,
+        ]);
+
+    return redirect('/purchase/' . $item_id);
     }
 }

@@ -61,3 +61,9 @@ Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])
 
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])
     ->middleware('auth');
+
+Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])
+    ->middleware('auth');
+
+Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])
+    ->middleware('auth');

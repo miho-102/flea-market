@@ -6,13 +6,13 @@
     </head>
     <body>
         <h1>プロフィール設定</h1>
-        
+
         <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
             @csrf
-            
+
             <div>
                 <label>プロフィール画像</label>
-                @if ($profile->image)
+                @if ($profile && $profile->image)
                 <img src="{{ asset('storage/' . $profile->image) }}" width="100">
                 @endif
                 <input type="file" name="image">
@@ -25,19 +25,19 @@
 
             <div>
                 <label>郵便番号</label>
-                <input type="text" name="postal_code" value="{{ old('postal_code', $profile->postal_code) }}">
+                <input type="text" name="postal_code" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
             </div>
 
             <div>
                 <label>住所</label>
-                <input type="text" name="address" value="{{ old('address', $profile->address) }}">
+                <input type="text" name="address" value="{{ old('address', $profile->address ?? '') }}">
             </div>
 
             <div>
                 <label>建物名</label>
-                <input type="text" name="building" value="{{ old('building', $profile->building) }}">
+                <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}">
             </div>
-            
+
             <button type="submit">
                 更新する
             </button>

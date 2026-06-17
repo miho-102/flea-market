@@ -12,9 +12,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $profile = Profile::firstOrCreate(
-        ['user_id' => $user->id]
-        );
+        $profile = Profile::where('user_id', $user->id)->first();
+
         return view('profile.edit', compact('user', 'profile'));
         }
 

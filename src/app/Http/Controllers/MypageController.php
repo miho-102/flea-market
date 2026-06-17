@@ -13,6 +13,8 @@ class MypageController extends Controller
 
         $items = $user->items;
 
-    return view('mypage.index', compact('user', 'items'));
+        $purchases = $user->purchases()->with('item')->get();
+
+    return view('mypage.index', compact('user', 'items', 'purchases'));
     }
 }
