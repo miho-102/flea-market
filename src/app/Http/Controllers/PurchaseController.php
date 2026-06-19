@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\AddressRequest;
 
 class PurchaseController extends Controller
 {
@@ -21,7 +23,7 @@ class PurchaseController extends Controller
 
         return view('purchase.create', compact('item', 'profile'));
     }
-    public function store(Request $request,$item_id)
+    public function store(PurchaseRequest $request,$item_id)
     {
         $item = Item::findOrFail($item_id);
 
@@ -51,7 +53,7 @@ class PurchaseController extends Controller
         return view('purchase.address', compact('item', 'profile'));
     }
 
-    public function updateAddress(Request $request, $item_id)
+    public function updateAddress(AddressRequest $request, $item_id)
     {
         $profile = Auth::user()->profile;
         $profile->update([

@@ -13,6 +13,10 @@
         <option value="カード支払い">カード支払い</option>
     </select>
 
+    @error('payment_method')
+    <p>{{ $message }}</p>
+    @enderror
+
     <p>配送先</p>
 
     <a href="/purchase/address/{{ $item->id }}">

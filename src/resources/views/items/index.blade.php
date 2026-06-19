@@ -22,6 +22,8 @@
             <span>Sold</span>
         @endif
 
+        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" width="150">
+
         <h3>
             <a href="/item/{{ $item->id }}">
                 {{ $item->name }}
