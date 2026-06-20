@@ -33,7 +33,7 @@ class ItemsTableSeeder extends Seeder
 
         $item->categories()->attach([1, 5]);
 
-        Item::create([
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'HDD',
             'brand_name' => '西芝',
@@ -44,7 +44,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([2]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => '玉ねぎ3束',
             'brand_name' => null,
@@ -55,7 +57,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([10]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => '革靴',
             'brand_name' => null,
@@ -66,7 +70,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([1, 5]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'ノートPC',
             'brand_name' => null,
@@ -77,7 +83,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([2]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'マイク',
             'brand_name' => null,
@@ -88,7 +96,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => true,
         ]);
 
-        Item::create([
+        $item->categories()->attach([8]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'ショルダーバッグ',
             'brand_name' => null,
@@ -99,7 +109,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([1, 6]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'タンブラー',
             'brand_name' => null,
@@ -110,7 +122,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([9]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'コーヒーミル',
             'brand_name' => 'Starbacks',
@@ -121,7 +135,9 @@ class ItemsTableSeeder extends Seeder
             'is_sold' => false,
         ]);
 
-        Item::create([
+        $item->categories()->attach([9]);
+
+        $item = Item::create([
             'user_id' => 1,
             'name' => 'メイクセット',
             'brand_name' => null,
@@ -131,6 +147,8 @@ class ItemsTableSeeder extends Seeder
             'condition' => 2,
             'is_sold' => false,
         ]);
+
+        $item->categories()->attach([4]);
 
 
     }

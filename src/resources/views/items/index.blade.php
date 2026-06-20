@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>商品一覧</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<form action="/" method="GET">
-    <input type="text" name="keyword" value="{{ request('keyword') }}">
-    <button type="submit">検索</button>
-</form>
+@section('title', '商品一覧')
 
-<a href="/?keyword={{ request('keyword') }}">おすすめ</a>
-<a href="/?page=mylist&keyword={{ request('keyword') }}">マイリスト</a>
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
 
-<h1>商品一覧</h1>
+@section('content')
 
-@foreach ($items as $item)
-    <div>
-        @if ($item->is_sold)
-            <span>Sold</span>
-        @endif
+<div class="tab">
+    <a href="/?keyword={{ request('keyword') }}">おすすめ</a>
+    <a href="/?page=mylist&keyword={{ request('keyword') }}">マイリスト</a>
+</div>
 
-        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" width="150">
-
-        <h3>
+<div class="item-list">
+    @foreach ($items as $item)
+        <div class="item-card">
             <a href="/item/{{ $item->id }}">
-                {{ $item->name }}
+                <div class="item-card__image-wrap">
+
+                    @if ($item->is_sold)
+                        <span class="item-card__sold">Sold</span>
+                    @endif
+
+                    <img
+                        src="{{ asset('storage/' . $item->image) }}"
+                        alt="{{ $item->name }}"
+                        class="item-card__image">
+
+                </div>
+
+                <p class="item-card__name">
+                    {{ $item->name }}
+                </p>
             </a>
-        </h3>
+        </div>
+    @endforeach
+</div>
 
-        <p>{{ $item->price }}円</p>
-    </div>
-@endforeach
-
-
-</body>
-</html>
+@endsection

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title')</title>
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    @yield('css')
+</head>
+<body>
+
+<header class="header">
+    <div class="header__logo">COACHTECH</div>
+
+    <form action="/" method="GET" class="header__search">
+        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
+    </form>
+
+    <nav class="header__nav">
+        <a href="/logout">ログアウト</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/sell" class="header__sell">出品</a>
+    </nav>
+</header>
+
+@yield('content')
+
+</body>
+</html>
