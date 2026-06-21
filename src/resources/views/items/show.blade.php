@@ -27,18 +27,34 @@
             ¥{{ number_format($item->price) }}
         </p>
 
-        <div class="item-detail__actions">
-            <form action="/item/{{ $item->id }}/like" method="POST">
-                @csrf
-                <button type="submit" class="item-detail__like-button">
-                    ♡
-                </button>
-            </form>
+<div class="item-detail__icons">
 
-            <p class="item-detail__count">
-                いいね数：{{ $item->likes->count() }}
-            </p>
-        </div>
+    <div class="item-detail__icon">
+        <form action="/item/{{ $item->id }}/like" method="POST">
+            @csrf
+
+            <button type="submit" class="icon-button">
+                @if ($isLiked)
+                <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" alt="いいね済み" class="item-detail__icon-image">
+                @else
+                <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" alt="いいね" class="item-detail__icon-image">
+                @endif
+            </button>
+        </form>
+
+        <span>{{ $item->likes->count() }}</span>
+    </div>
+
+    <div class="item-detail__icon">
+        <img
+            src="{{ asset('images/ふきだしロゴ.png') }}"
+            alt="コメント"
+            class="item-detail__icon-image">
+
+        <span>{{ $item->comments->count() }}</span>
+    </div>
+
+</div>
 
         <a href="/purchase/{{ $item->id }}" class="item-detail__purchase-button">
             購入する

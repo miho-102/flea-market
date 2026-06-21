@@ -56,3 +56,9 @@
     color: red;
     margin-top: 6px;
 }
+
+.auth__text {
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.8;
+}

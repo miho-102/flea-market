@@ -9,7 +9,12 @@
 <body>
 
 <header class="header">
-    <div class="header__logo">COACHTECH</div>
+    <div class="header__logo">
+        <img
+        src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}"
+        alt="COACHTECH"
+        class="header__logo-image">
+    </div>
 
     <form action="/" method="GET" class="header__search">
         <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">

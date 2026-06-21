@@ -11,7 +11,7 @@
 
 <header class="guest-header">
     <img
-        src="{{ asset('images/logo.svg') }}"
+        src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}"
         alt="COACHTECH"
         class="guest-header__logo">
 </header>

@@ -1,57 +1,64 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
 .header {
-    height: 70px;
     width: 100%;
+    height: 80px;
     background: #000;
     display: flex;
     align-items: center;
-    padding: 0 30px;
-    gap: 40px;
+    padding: 0 24px;
+    gap: 24px;
+    overflow: hidden;
 }
 
 .header__logo {
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
+    width: 210px;
+    flex-shrink: 0;
+}
+
+.header__logo-image {
+    width: 190px;
+    height: auto;
+    display: block;
 }
 
 .header__search {
     flex: 1;
+    max-width: 560px;
 }
 
 .header__search input {
     width: 100%;
-    max-width: 500px;
-    height: 36px;
+    height: 40px;
     padding: 0 16px;
-    border-radius: 4px;
     border: none;
-    font-size: 16px;
+    border-radius: 4px;
 }
 
 .header__nav {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
+    flex-shrink: 0;
 }
 
 .header__nav a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .header__sell {
+    min-width: 72px;
+    padding: 10px 18px;
+    border-radius: 4px;
     background: #fff;
     color: #000 !important;
-    padding: 8px 18px;
-    border-radius: 4px;
+    text-align: center;
 }
+
 .guest-header {
+    width: 100%;
     height: 80px;
     background: #000;
     display: flex;
@@ -60,5 +67,8 @@ body {
 }
 
 .guest-header__logo {
-    height: 35px;
+    width: 280px;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }

@@ -22,7 +22,7 @@
         <div class="purchase__section">
             <h3>支払い方法</h3>
 
-            <select name="payment_method" form="purchase-form" class="purchase__select">
+            <select name="payment_method" id="payment_method" form="purchase-form" class="purchase__select">
                 <option value="">選択してください</option>
                 <option value="コンビニ払い">コンビニ払い</option>
                 <option value="カード支払い">カード支払い</option>
@@ -56,7 +56,7 @@
 
             <div class="purchase__summary-row">
                 <span>支払い方法</span>
-                <span>選択後に反映</span>
+                <span id="selected-payment">選択後に反映</span>
             </div>
         </div>
 
@@ -65,5 +65,14 @@
         </button>
     </form>
 </div>
+
+<script>
+    const paymentSelect = document.getElementById('payment_method');
+    const selectedPayment = document.getElementById('selected-payment');
+
+    paymentSelect.addEventListener('change', function () {
+        selectedPayment.textContent = this.value || '選択後に反映';
+    });
+</script>
 
 @endsection
