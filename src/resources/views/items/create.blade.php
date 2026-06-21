@@ -1,67 +1,111 @@
-<h1>商品出品</h1>
+@extends('layouts.app')
 
-<form action="/sell" method="POST" enctype="multipart/form-data">
-    @csrf
+@section('title', '商品出品')
 
-    <p>カテゴリー</p>
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sell.css') }}">
+@endsection
 
-    @foreach ($categories as $category)
-        <label>
-            <input type="checkbox" name="categories[]" value="{{ $category->id }}">
-            {{ $category->name }}
-        </label>
-    @endforeach
+@section('content')
 
-    @error('categories')
-    <p>{{ $message }}</p>
-    @enderror
+<div class="sell">
+    <h1 class="sell__title">商品の出品</h1>
 
-    <p>商品の状態</p>
-    <select name="condition">
-        <option value="">選択してください</option>
-        <option value="1">良好</option>
-        <option value="2">目立った傷や汚れなし</option>
-        <option value="3">やや傷や汚れあり</option>
-        <option value="4">状態が悪い</option>
-    </select>
+    <form action="/sell" method="POST" enctype="multipart/form-data" class="sell-form">
+        @csrf
 
-    @error('condition')
-    <p>{{ $message }}</p>
-    @enderror
+        <div class="sell-form__group">
+            <label class="sell-form__label">商品画像</label>
+            <label class="image-upload">
+                <input type="file" name="image">
+                <span>画像を選択する</span>
+            </label>
 
-    <p>商品名</p>
-    <input type="text" name="name">
+            @error('image')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
 
-    @error('name')
-    <p>{{ $message }}</p>
-    @enderror
+        <div class="sell-form__section-title">
+            商品の詳細
+        </div>
 
-    <p>ブランド名</p>
-    <input type="text" name="brand_name">
+        <div class="sell-form__group">
+            <label class="sell-form__label">カテゴリー</label>
 
-    <p>商品の説明</p>
-    <textarea name="description"></textarea>
+            <div class="category-list">
+                @foreach ($categories as $category)
+                    <label class="category-item">
+                        <input type="checkbox" name="categories[]" value="{{ $category->id }}">
+                        <span>{{ $category->name }}</span>
+                    </label>
+                @endforeach
+            </div>
 
-    @error('description')
-    <p>{{ $message }}</p>
-    @enderror
+            @error('categories')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
 
-    <p>販売価格</p>
-    <input type="text" name="price">
+        <div class="sell-form__group">
+            <label class="sell-form__label">商品の状態</label>
 
-    @error('price')
-    <p>{{ $message }}</p>
-    @enderror
+            <select name="condition" class="sell-form__select">
+                <option value="">選択してください</option>
+                <option value="1">良好</option>
+                <option value="2">目立った傷や汚れなし</option>
+                <option value="3">やや傷や汚れあり</option>
+                <option value="4">状態が悪い</option>
+            </select>
 
-    <p>商品画像</p>
-    <input type="file" name="image">
+            @error('condition')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
 
-    @error('image')
-    <p>{{ $message }}</p>
-    @enderror
+        <div class="sell-form__section-title">
+            商品名と説明
+        </div>
 
-    <button type="submit">
-        出品する
-    </button>
+        <div class="sell-form__group">
+            <label class="sell-form__label">商品名</label>
+            <input type="text" name="name" value="{{ old('name') }}" class="sell-form__input">
 
-</form>
+            @error('name')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="sell-form__group">
+            <label class="sell-form__label">ブランド名</label>
+            <input type="text" name="brand_name" value="{{ old('brand_name') }}" class="sell-form__input">
+        </div>
+
+        <div class="sell-form__group">
+            <label class="sell-form__label">商品の説明</label>
+            <textarea name="description" class="sell-form__textarea">{{ old('description') }}</textarea>
+
+            @error('description')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="sell-form__group">
+            <label class="sell-form__label">販売価格</label>
+            <div class="price-input">
+                <span>¥</span>
+                <input type="text" name="price" value="{{ old('price') }}">
+            </div>
+
+            @error('price')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <button type="submit" class="sell-form__button">
+            出品する
+        </button>
+    </form>
+</div>
+
+@endsection

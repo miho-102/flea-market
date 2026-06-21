@@ -15,6 +15,8 @@ class MypageController extends Controller
 
         $purchases = $user->purchases()->with('item')->get();
 
-    return view('mypage.index', compact('user', 'items', 'purchases'));
+        $profile = $user->profile;
+
+    return view('mypage.index', compact('user', 'items', 'purchases', 'profile'));
     }
 }

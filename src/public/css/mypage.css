@@ -1,0 +1,68 @@
+.mypage {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 30px;
+}
+
+.mypage-profile {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.mypage-profile__image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mypage-profile__name {
+    flex: 1;
+    font-size: 32px;
+}
+
+.mypage-profile__button {
+    padding: 10px 24px;
+    border: 1px solid #ff5555;
+    border-radius: 6px;
+    color: #ff5555;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mypage-tab {
+    display: flex;
+    gap: 60px;
+    padding: 0 0 12px 80px;
+    border-bottom: 1px solid #aaa;
+}
+
+.mypage-tab a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mypage-tab a.active {
+    color: #ff5555;
+}
+
+.mypage-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-top: 40px;
+}
+
+.mypage-item a {
+    color: #333;
+    text-decoration: none;
+}
+
+.mypage-item__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}

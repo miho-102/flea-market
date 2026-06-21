@@ -1,42 +1,56 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>ログイン</title>
-</head>
-<body>
+@extends('layouts.guest')
 
-    <h2>ログイン</h2>
+@section('title', 'ログイン')
 
-    <form action="{{ route('login') }}" method="POST">
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endsection
+
+@section('content')
+
+<div class="auth">
+    <h1 class="auth__title">
+        ログイン
+    </h1>
+
+    <form action="{{ route('login') }}" method="POST" class="auth-form">
         @csrf
 
-        <div>
+        <div class="auth-form__group">
             <label>メールアドレス</label>
+
             <input
                 type="email"
                 name="email"
-                value="{{ old('email') }}"
-            >
+                value="{{ old('email') }}">
+
+            @error('email')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div>
+        <div class="auth-form__group">
             <label>パスワード</label>
+
             <input
                 type="password"
-                name="password"
-            >
+                name="password">
+
+            @error('password')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
 
-        <button type="submit">
+        <button type="submit" class="auth-form__button">
             ログインする
         </button>
-
     </form>
 
-    <a href="/register">
-        会員登録はこちら
-    </a>
+    <div class="auth__link">
+        <a href="/register">
+            会員登録はこちら
+        </a>
+    </div>
+</div>
 
-</body>
-</html>
+@endsection
