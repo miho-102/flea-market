@@ -18,6 +18,7 @@
         メール認証を完了してください。
     </p>
 
+    {{--
     <form method="POST" action="{{ route('verification.send') }}" class="auth-form">
         @csrf
 
@@ -25,10 +26,17 @@
             認証メールを再送する
         </button>
     </form>
+    --}}
+
+    <a href="http://localhost:8025"
+   target="_blank"
+   class="verify-email__button">
+    認証はこちらから
+</a>
 
     <div class="auth__link">
         <a href="/">
-            トップページへ戻る
+            認証メールを再送する
         </a>
     </div>
 </div>

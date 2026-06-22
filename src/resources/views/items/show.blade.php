@@ -113,7 +113,7 @@
                 </div>
             @endforeach
 
-            <form action="/item/{{ $item->id }}/comment" method="POST" class="comment-form">
+            <form action="/item/{{ $item->id }}/comments" method="POST" class="comment-form">
                 @csrf
 
                 <label class="comment-form__label">

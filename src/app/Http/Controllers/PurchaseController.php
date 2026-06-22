@@ -8,6 +8,8 @@ use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
@@ -23,10 +25,10 @@ class PurchaseController extends Controller
 
         return view('purchase.create', compact('item', 'profile'));
     }
-    public function store(PurchaseRequest $request,$item_id)
+
+    public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
-
         $profile = Auth::user()->profile;
 
         Purchase::create([
@@ -36,14 +38,32 @@ class PurchaseController extends Controller
             'postal_code' => $profile->postal_code,
             'address' => $profile->address,
             'building' => $profile->building,
-        ]);
+            ]);
 
-        $item->update([
-            'is_sold' => true,
-        ]);
+            $item->update([
+                'is_sold' => true,
+                ]);
 
-        return redirect('/');
-    }
+                Stripe::setApiKey(config('services.stripe.secret'));
+
+                $checkoutSession = Session::create([
+                    'payment_method_types' => ['card'],
+                    'line_items' => [[
+                        'price_data' => [
+                            'currency' => 'jpy',
+                            'product_data' => [
+                                'name' => $item->name,
+                                ],
+                                'unit_amount' => $item->price,
+                                ],
+                                'quantity' => 1,
+                                ]],
+                                'mode' => 'payment',
+                                'success_url' => url('/'),
+                                'cancel_url' => url('/purchase/' . $item->id),
+                                ]);
+                                return redirect($checkoutSession->url);
+                                }
 
     public function editAddress($item_id)
     {

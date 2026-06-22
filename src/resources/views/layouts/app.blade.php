@@ -21,7 +21,12 @@
     </form>
 
     <nav class="header__nav">
-        <a href="/logout">ログアウト</a>
+        <form action="/logout" method="POST" class="header__logout-form">
+            @csrf
+            <button type="submit" class="header__logout-button">
+                ログアウト
+            </button>
+        </form>
         <a href="/mypage">マイページ</a>
         <a href="/sell" class="header__sell">出品</a>
     </nav>
