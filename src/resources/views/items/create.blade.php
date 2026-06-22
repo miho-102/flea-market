@@ -16,6 +16,9 @@
 
         <div class="sell-form__group">
             <label class="sell-form__label">商品画像</label>
+
+            <img id="image-preview" class="image-preview" style="display:none;">
+
             <label class="image-upload">
                 <input type="file" name="image">
                 <span>画像を選択する</span>
@@ -107,5 +110,18 @@
         </button>
     </form>
 </div>
+
+<script>
+document.getElementById('image-input').addEventListener('change', function()
+{
+    const file = this.files[0];
+
+    if (file) {
+        const preview = document.getElementById('image-preview');
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+    }
+});
+</script>
 
 @endsection

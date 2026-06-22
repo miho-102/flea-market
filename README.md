@@ -81,6 +81,7 @@ php artisan storage:link
 
 ### 購入機能
 - 商品購入
+- Stripe決済
 - 支払い方法選択
 - 配送先変更
 
@@ -101,6 +102,20 @@ php artisan storage:link
 - purchases
 - profiles
 
+## テスト
+### PHPUnit
+- LoginTest
+- RegisterTest
+
 ## URL
 - 開発環境: http://localhost
 - phpMyAdmin: http://localhost:8080
+
+## 補足
+メール認証誘導画面は作成済みです。
+
+確認URL:
+http://localhost/email/verify
+
+現在は必須要件に合わせて、会員登録後はプロフィール設定画面へ遷移します。
+MailHog未導入のため、実メール送信およびメール内認証リンクからの認証完了確認は未実施です。
